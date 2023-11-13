@@ -1,37 +1,74 @@
 import React, { useState } from 'react'
 import "./App.css"; 
-import { AutoComplete } from 'antd'; 
 import { Cascader } from 'antd'; 
+//import { PageHeader } from 'antd'; 
+//import { Menu } from 'antd'; 
+import { Layout } from 'antd'; 
+import { Form, Button, Input } from 'antd'; 
+//import { Calendar } from 'antd'; 
+import { DatePicker } from 'antd'; 
+
+  
+  
+const { Header, Footer, Sider, Content } = Layout; 
+  
 
 
 export default function App() { 
 
-const [currentValue, setCurrentValue] = useState('') 
-const options = [ 
-	{label: '1', value: '1'}, 
-	{label: '2', value: '2'}, 
-	{label: '3', value: '3'}, 
-	{label: '4', value: '4'}, 
-	{label: '5', value: '5'},
-  {lable: 'Fresher', value:'Fresher'},
-  {lable:'>5', value:'>5'} 
-] 
+
 
 return ( 
-	<div style={{ display: 'block',  width: 700, padding: 30 }}> 
-	<h4>Enter your work exprience in year </h4> 
-	<AutoComplete 
-		options={options} 
-		style={{ width: 200 }} 
-		onSelect={(value)=> { 
-			setCurrentValue(value) 
-		}} 
-		placeholder="Enter your text"
-	/> <br /> 
-
-	<p>Selected Value {`${currentValue}`} </p> 
-
-  <h4>Select your current location</h4> 
+	<div style={{ display: 'block',  width: 1000, padding: 30 }}> 
+ 
+	
+  
+      <h4>Enter your details !!!!</h4> 
+      <> 
+        <Layout> 
+          <Sider style={{ backgroundColor: 'lightblue' }} > 
+           
+            <Form 
+                name="basicform"
+                onFinishFailed={() => alert('Failed to submit')} 
+                onFinish={() => alert('Form Submitted')} 
+                initialValues={{ remember: true }} 
+            > 
+             <Form.Item 
+              label="Enter yorrname"
+              name="Username"
+              rules={[{ required: true, message: 'Please enter username' }]} 
+             > 
+             
+              <Input /> 
+             </Form.Item> 
+             <Form.Item 
+              label="Enter yourcollegename"
+              name="Username2"
+              rules={[{ required: true, message: 'Please enter username' }]} 
+             > 
+             
+              <Input /> 
+             </Form.Item> 
+             <Form.Item> 
+              <Button type="success" htmlType="submit"> 
+               Submit  
+              </Button> 
+             </Form.Item> 
+            </Form> 
+          </Sider> 
+          <Layout style={{ backgroundColor: 'babypink' }}> 
+            <Header style={{ backgroundColor: 'red' }}> 
+               
+              <> 
+              <DatePicker onChange={(date) => console.log(date)} 
+               placeholder="DOB"/>, 
+              </> 
+              </Header> 
+             
+            <Footer style={{ backgroundColor: 'green' }}
+           > 
+             
       <> 
         <Cascader 
           options={[ 
@@ -83,7 +120,11 @@ return (
             }, 
           ]} 
           onChange={(data) => { console.log(data) }} 
-          placeholder="Select destination" /> 
+          placeholder="Select your location" /> 
+      </>  
+            </Footer> 
+          </Layout> 
+        </Layout> 
       </> 
 	</div> 
 ); 
